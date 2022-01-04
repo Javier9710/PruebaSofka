@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+ <head th:replace="layout/layout :: head"></head>
+<body>
+	 <header th:replace="layout/layout :: header"></header>
+
+
+<div class="container py-4">
+
+		<div class="card border-primary text-center">
+			<div class="card-header">Escriba un nombre de Jugador</div>
+			<div class="card-body">
+			
+				<form th:action="@{/jugador/crearRonda}" th:object="${jugadorObj}" method="post">
+				
+				
+			                
+			                
+			        <div class="form-group col-sm-6 ">
+			        
+			        <img width="100" height="100" alt="Spring logo"
+			                th:src="@{/img/perfil1.png}" />
+						
+					</div>        
+			                
+
+					<div class="form-group col-sm-6 ">
+						<input type="text" name="nombre" id="nombre" th:field="*{nombre}"
+							class="form-control" placeholder="nombre" autofocus required />
+					</div>
+
+					<div class="form-group col-sm-6">
+						<input type="submit" class="btn btn-lg btn-primary btn-block"
+							value="Iniciar" />
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+	
+	 <footer th:replace="layout/layout :: footer"></footer>
+	 
+	</body>
+
+</html>
