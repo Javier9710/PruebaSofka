@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import ufps.springBoot.juego.models.dao.ICategoriaDao;
 import ufps.springBoot.juego.models.dao.IRespuestaDao;
 import ufps.springBoot.juego.models.entities.Categoria;
@@ -34,7 +36,8 @@ public class PreguntaController {
 
 
     @PostMapping("/guardar")
-    public String guardarPregunta(Pregunta pregunta, @RequestParam(name = "respuestasForm[]") String[] respuestasForm, @RequestParam(name = "check") int check){
+    public String guardarPregunta(Pregunta pregunta, @RequestParam(name = "respuestasForm[]") String[] respuestasForm, 
+    		@RequestParam(name = "check") int check, RedirectAttributes flash){
         preguntaService.guardar(pregunta);
 
         for (int i = 0; i < respuestasForm.length; i++) {
@@ -47,6 +50,8 @@ public class PreguntaController {
 			}
             preguntaService.guardarRespuesta(respuestaNew);
         }
+        
+       flash.addFlashAttribute("success", "Pregunta registrada con exito");
 
         return "redirect:form";
     }
