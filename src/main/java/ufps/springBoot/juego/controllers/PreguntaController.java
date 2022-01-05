@@ -38,7 +38,7 @@ public class PreguntaController {
     @PostMapping("/guardar")
     public String guardarPregunta(Pregunta pregunta, @RequestParam(name = "respuestasForm[]") String[] respuestasForm, 
     		@RequestParam(name = "check") int check, RedirectAttributes flash){
-        preguntaService.guardar(pregunta);
+        	preguntaService.guardar(pregunta);
 
         for (int i = 0; i < respuestasForm.length; i++) {
             Respuesta respuestaNew = new Respuesta();

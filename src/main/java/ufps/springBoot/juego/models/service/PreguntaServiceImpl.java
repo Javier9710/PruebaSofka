@@ -23,6 +23,9 @@ public class PreguntaServiceImpl implements IPreguntaService{
     
     @Autowired
     private IRespuestaDao respuestaDao;
+    
+    
+    
 
     @Override
     public Pregunta guardar(Pregunta pregunta) {
@@ -38,6 +41,12 @@ public class PreguntaServiceImpl implements IPreguntaService{
     public List<Pregunta> listaPreguntas() {
         return preguntaDao.findAll();
     }
+    
+	@Override
+	public List<Pregunta> listaPreguntasByCategoria(Long id) {
+		return preguntaDao.buscarPorcategoria(id);
+	}
+    
 
     //-----------------------------------------------------
 
@@ -52,6 +61,7 @@ public class PreguntaServiceImpl implements IPreguntaService{
 	public Respuesta guardarRespuesta(Respuesta respuesta) {
 		return respuestaDao.save(respuesta);
 	}
+
 
 
 

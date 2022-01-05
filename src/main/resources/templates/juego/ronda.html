@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+ <head th:replace="layout/layout :: head"></head>
+<body>
+	 <header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header">
+			<h3>PREGUNTA</h3>
+			</div>
+			<div class="card-body">
+
+				<hr class="border border-primary">
+
+				<form th:action="@{/juego/verificar}" th:object="${ronda}"
+					method="post">
+					<div class="form-group row">
+
+						<label class="col-sm-2 col-form-label">PREGUNTA</label>
+						<div class="col-sm-6">
+							<textarea class="form-control" type="text" disabled="disabled"
+								th:field="*{pregunta.descripcion}"></textarea> <small class="form-text text-danger"></small>
+						</div>
+					</div>
+					
+				<hr class="border border-primary">
+
+				<h2>Marque la Respuesta Correcta</h2>
+				
+				
+				<div class="form-group" id="product1">
+					<div class="form-group row">
+						<div th:each="respuestas : ${ronda.pregunta.respuestas}" class="col-sm-6">
+						<input id="product-1-1" name="check"  type="radio" th:value="${respuestas.id}"/> Respuesta Correcta
+							<input th:value="${respuestas.respuesta}" class="form-control" name="respuestasForm[]"
+								 type="text" disabled="disabled"
+								   /> <small class="form-text text-danger"></small>
+			           </div>
+					
+				 </div>
+               </div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input class="btn btn-primary" type="submit"
+								value="VERIFICAR" />
+						</div>
+						
+						
+					</div>
+
+
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	 <footer th:replace="layout/layout :: footer"></footer>
+	 
+
+	 
+</body>
+
+</html>

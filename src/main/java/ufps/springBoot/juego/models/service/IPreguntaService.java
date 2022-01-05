@@ -14,6 +14,8 @@ public interface IPreguntaService {
     public Pregunta getPregunta(Long id);
 
     public List<Pregunta> listaPreguntas();
+    
+    public List<Pregunta> listaPreguntasByCategoria(Long id);
 
     //----------------------------------------------
 

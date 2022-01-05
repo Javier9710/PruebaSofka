@@ -1,12 +1,14 @@
 package ufps.springBoot.juego.models.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ufps.springBoot.juego.models.dao.IJugadorDao;
 import ufps.springBoot.juego.models.dao.IRondaDao;
 import ufps.springBoot.juego.models.entities.Jugador;
 import ufps.springBoot.juego.models.entities.Ronda;
 
+@Service
 public class RondaSeriviceImpl implements IRondaService {
 	
 	@Autowired
