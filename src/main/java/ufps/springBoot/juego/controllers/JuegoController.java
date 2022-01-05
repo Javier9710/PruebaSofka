@@ -1,5 +1,6 @@
 package ufps.springBoot.juego.controllers;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ufps.springBoot.juego.models.entities.Jugador;
 import ufps.springBoot.juego.models.entities.Pregunta;
 import ufps.springBoot.juego.models.entities.Premio;
+import ufps.springBoot.juego.models.entities.Respuesta;
 import ufps.springBoot.juego.models.entities.Ronda;
 import ufps.springBoot.juego.models.service.IPreguntaService;
 import ufps.springBoot.juego.models.service.IRondaService;
@@ -40,7 +43,7 @@ public class JuegoController {
 		
 	}
 	
-	@PostMapping("/crearRonda")
+	@GetMapping("/crearRonda")
 	public String crearRonda(Jugador jugador, Model model) {
 		rondaService.guardarJugador(jugador);
 		List<Pregunta> preguntas = preguntaService.listaPreguntasByCategoria(nivel);
@@ -63,17 +66,29 @@ public class JuegoController {
 	}
 	
 	
-	@PostMapping("/verificar")
-	public String verificar(Ronda ronda, @RequestParam() Long id) {
+	@GetMapping("/verificar")
+	public String verificar(Ronda ronda, @RequestParam(name = "check") Long id, RedirectAttributes flash) {
+		//System.out.println("-----------" + id);
+		System.out.println("asdasd" + ronda);
 		
+		System.out.println("----------------------------:-----__:_:-.-. " + ronda.getPregunta().getDescripcion());
+		List<Respuesta> respuestas = ronda.getPregunta().getRespuestas();
+		Respuesta correcta = null;
+		for (int i = 0; i < respuestas.size(); i++) {
+			if(respuestas.get(i).getCorrecta() == true) {
+				correcta = respuestas.get(i);	
+		}
+		}
+		if (correcta.getId() == id) {
+			System.out.println("felicitaciones, marco la respuesta correcta");
+			nivel++;
+			flash.addAttribute("jugador", ronda.getJugador());
+			return "redirect:/juego/crearRonda";
+			
+		}else {
+			nivel=1L;
+		}
 		
-		
-		
-		return "redirect:/crearRonda";
-		
-	}
-	
-	
-	
-
+		return "HOLI";
+}
 }

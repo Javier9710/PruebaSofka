@@ -16,7 +16,8 @@ public interface IPreguntaService {
     public List<Pregunta> listaPreguntas();
     
     public List<Pregunta> listaPreguntasByCategoria(Long id);
-
+    
+   
     //----------------------------------------------
 
     public List<Categoria> listaCategorias();
@@ -24,4 +25,5 @@ public interface IPreguntaService {
     //----------------------------------------------
     
     public Respuesta guardarRespuesta(Respuesta respuesta);
+
 }

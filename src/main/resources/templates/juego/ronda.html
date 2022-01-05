@@ -14,7 +14,7 @@
 				<hr class="border border-primary">
 
 				<form th:action="@{/juego/verificar}" th:object="${ronda}"
-					method="post">
+					method="get">
 					<div class="form-group row">
 
 						<label class="col-sm-2 col-form-label">PREGUNTA</label>
@@ -40,6 +40,11 @@
 					
 				 </div>
                </div>
+               <input type="hidden" th:value="${ronda.pregunta.id}" name="pregunta">
+               <input type="hidden" th:value="${ronda.premio.id}" name="premio">
+               <input type="hidden" th:value="${ronda.jugador.id}" name="jugador">
+           	  <input type="hidden" th:value="${ronda.id}" name="ronda">
+               
 					<div class="form-group row">
 						<div class="col-sm-6">
 							<input class="btn btn-primary" type="submit"
