@@ -46,6 +46,43 @@ public class PreguntaServiceImpl implements IPreguntaService{
 	public List<Pregunta> listaPreguntasByCategoria(Long id) {
 		return preguntaDao.buscarPorcategoria(id);
 	}
+	
+	@Override
+	public boolean validaCantidadPreguntas() {
+		int cont1=0;
+		int cont2=0;
+		int cont3=0;
+		int cont4=0;
+		int cont5=0;
+		List<Pregunta> preguntas = this.listaPreguntas();
+		if(preguntas.size()<10) {
+			return false;
+			
+		}else {
+			for (int i = 0; i < preguntas.size(); i++) {
+				if(preguntas.get(i).getCategoria().getId()==1) {
+					cont1++;
+				}
+				if(preguntas.get(i).getCategoria().getId()==2) {
+					cont2++;
+				}
+				if(preguntas.get(i).getCategoria().getId()==3) {
+					cont3++;
+				}
+				if(preguntas.get(i).getCategoria().getId()==4) {
+					cont4++;
+				}
+				if(preguntas.get(i).getCategoria().getId()==5) {
+					cont5++;
+				}
+			}	
+		}
+		if (cont1<2 || cont2<2 || cont3<2 || cont4<2 || cont5<2) {
+			return false;
+		}
+		
+		return true;
+	}
     
 
     //-----------------------------------------------------
@@ -61,6 +98,8 @@ public class PreguntaServiceImpl implements IPreguntaService{
 	public Respuesta guardarRespuesta(Respuesta respuesta) {
 		return respuestaDao.save(respuesta);
 	}
+
+
 
 
 

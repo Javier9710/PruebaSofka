@@ -42,6 +42,15 @@ public class JuegoController {
 	
 	@GetMapping("/regJugador")
 	public String registrarJugador(Jugador jugador, RedirectAttributes flash) {
+		
+		boolean validacion = preguntaService.validaCantidadPreguntas();
+		
+	if (validacion==false) {
+		flash.addFlashAttribute("warning", "No existen las cantidad minima de preguntas para iniciar");
+		return "redirect:/juego/iniciar";
+	}
+	
+		
 		Jugador jugador1 = rondaService.buscarJugadorNombre(jugador.getNombre());
 		if(jugador1==null) {
 		rondaService.guardarJugador(jugador);

@@ -16,6 +16,8 @@ public interface IPreguntaService {
     
     public List<Pregunta> listaPreguntasByCategoria(Long id);
     
+    public boolean validaCantidadPreguntas();
+    
    
     //----------------------------------------------
 
