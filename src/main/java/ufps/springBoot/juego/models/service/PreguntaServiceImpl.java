@@ -51,7 +51,7 @@ public class PreguntaServiceImpl implements IPreguntaService{
 	public boolean validaCantidadPreguntas() {
 		int cont1=0, cont2=0, cont3=0, cont4=0, cont5=0;
 		List<Pregunta> preguntas = this.listaPreguntas();
-		if(preguntas.size()<10) {
+		if(preguntas.size()<25) {
 			return false;
 		}else {
 			for (int i = 0; i < preguntas.size(); i++) {
@@ -72,7 +72,7 @@ public class PreguntaServiceImpl implements IPreguntaService{
 				}
 			}	
 		}
-		if (cont1<2 || cont2<2 || cont3<2 || cont4<2 || cont5<2) {
+		if (cont1<5 || cont2<5 || cont3<5 || cont4<5 || cont5<5) {
 			return false;
 		}
 		

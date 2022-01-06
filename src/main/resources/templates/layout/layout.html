@@ -69,7 +69,6 @@
 
 
 		<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-		<!-- <script th:src="@{/js/popper.min.js}"></script> -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
 			integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
@@ -90,11 +89,13 @@
 
 		<div th:if="${perdedor != null}">
 			<script th:inline="javascript"> 
-		swal("JUGADOR: " +  [[${ronda.jugador.nombre}]], [[${perdedor}]]+ ' - Tu Premio es: ' + [[${ronda.jugador.acumulado}]], "error");
+			
+		swal("JUGADOR: " + [[${ronda.jugador.nombre}]], [[${perdedor}]]+ ' - Tu Premio es: ' + [[${ronda.jugador.acumulado}]], "error");
+
 		</script>
 		</div>
 
-        <div th:if="${retirado != null}">
+		<div th:if="${retirado != null}">
 			<script th:inline="javascript"> 
 		swal("JUGADOR: " +  [[${ronda.jugador.nombre}]], [[${retirado}]]+ ' - Tu Premio es: ' + [[${ronda.jugador.acumulado}]], "info");
 		</script>
