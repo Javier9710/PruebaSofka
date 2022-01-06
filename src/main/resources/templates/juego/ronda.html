@@ -48,7 +48,7 @@
 				<hr class="border border-primary">
 
 				<form th:action="@{/juego/verificar}" th:object="${ronda}"
-					method="get">
+					method="post">
 					<div class="form-group row">
 
 						<label class="col-sm-2 col-form-label">PREGUNTA:</label>
@@ -69,7 +69,7 @@
 						<div class="form-group row">
 							<div th:each="respuestas : ${ronda.pregunta.respuestas}"
 								class="col-sm-6">
-								<input id="product-1-1" name="check" type="radio"
+								<input id="product-1-1" checked="checked" name="check" type="radio"
 									th:value="${respuestas.id}" /> Respuesta Correcta <input
 									th:value="${respuestas.respuesta}" class="form-control"
 									name="respuestasForm[]" type="text" disabled="disabled" />

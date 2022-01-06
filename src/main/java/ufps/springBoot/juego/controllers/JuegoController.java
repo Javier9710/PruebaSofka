@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,7 +42,7 @@ public class JuegoController {
 		
 	}
 	
-	@GetMapping("/regJugador")
+	@PostMapping("/regJugador")
 	public String registrarJugador(Jugador jugador, RedirectAttributes flash) {
 		
 		boolean validacion = preguntaService.validaCantidadPreguntas();
@@ -73,7 +74,7 @@ public class JuegoController {
 	}
 	
 	
-	@GetMapping("/verificar")
+	@PostMapping("/verificar")
 	public String verificar(Ronda ronda, @RequestParam(name = "check") Long id, RedirectAttributes flash) {
 		
 		Respuesta correcta = rondaService.obtenerCorrecta(ronda);
@@ -86,15 +87,17 @@ public class JuegoController {
 			flash.addFlashAttribute("success", "Su respuesta fue Correcta");
 			return "redirect:/juego/crearRonda";
 			}else {
-				flash.addFlashAttribute("success", "Feliciades, Acabas de ganar el juego");
+				flash.addFlashAttribute("ganador", "Feliciades, Acabas de ganar el juego");
+				flash.addFlashAttribute("ronda", ronda);
 				nivel=1L;
-				return "redirect:/juego/iniciar"; 
+				return "redirect:/historia/datos"; 
 			}
 		}else {
 			rondaService.respuestaErronea(ronda);
 			nivel=1L;
-			flash.addFlashAttribute("error", "No has acertado la respuesta");
-			return "redirect:/juego/iniciar";
+			flash.addFlashAttribute("perdedor", "No has acertado la respuesta");
+			flash.addFlashAttribute("ronda", ronda);
+			return "redirect:/historia/datos";
 		}
 		
 }
@@ -105,7 +108,8 @@ public class JuegoController {
 		nivel=1L;
 		ronda.setEstado("RETIRADO");
 		rondaService.guardarRonda(ronda);
-		flash.addFlashAttribute("info", "Te Has retirado de la partida");
-		return "redirect:/juego/iniciar";
+		flash.addFlashAttribute("retirado", "Te Has retirado de la partida");
+		flash.addFlashAttribute("ronda", ronda);
+		return "redirect:/historia/datos";
 	}
 }

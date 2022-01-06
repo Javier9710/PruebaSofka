@@ -25,14 +25,14 @@
 					<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/juego/iniciar}">Jugar</a>
-					</li>
-					
-					<li class="nav-item"><a class="nav-link" th:href="@{/pregunta/form}">Registro de Preguntas</a>
-					</li>
-					
-					<li class="nav-item"><a class="nav-link" th:href="@{/historia/datos}">Historial de partidas</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/juego/iniciar}">Jugar</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/pregunta/form}">Registro de Preguntas</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/historia/datos}">Historial de partidas</a></li>
 
 				</ul>
 
@@ -49,6 +49,9 @@
 			th:text="${warning}"></div>
 		<div th:if="${info != null}" class="alert alert-info"
 			th:text="${info}"></div>
+
+
+
 	</header>
 	<div class="container"></div>
 
@@ -78,8 +81,24 @@
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<script th:src="@{/js/jquery-ui.min.js}"></script>
 		<script th:src="@{/js/jquery.js}"></script>
-		
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<div th:if="${ganador != null}">
+			<script th:inline="javascript"> 
+		swal("JUGADOR: " +  [[${ronda.jugador.nombre}]], [[${ganador}]]+ ' - Tu Premio es: ' + [[${ronda.jugador.acumulado}]], "success");
+		</script>
+		</div>
 
+		<div th:if="${perdedor != null}">
+			<script th:inline="javascript"> 
+		swal("JUGADOR: " +  [[${ronda.jugador.nombre}]], [[${perdedor}]]+ ' - Tu Premio es: ' + [[${ronda.jugador.acumulado}]], "error");
+		</script>
+		</div>
+
+        <div th:if="${retirado != null}">
+			<script th:inline="javascript"> 
+		swal("JUGADOR: " +  [[${ronda.jugador.nombre}]], [[${retirado}]]+ ' - Tu Premio es: ' + [[${ronda.jugador.acumulado}]], "info");
+		</script>
+		</div>
 	</footer>
 </body>
 
