@@ -65,16 +65,6 @@ public class RondaSeriviceImpl implements IRondaService {
 		return rondaDao.save(ronda);
 	}
 
-	public Respuesta obtenerCorrecta(Ronda ronda) {
-		List<Respuesta> respuestas = ronda.getPregunta().getRespuestas();
-		Respuesta correcta = null;
-		for (int i = 0; i < respuestas.size(); i++) {
-			if (respuestas.get(i).getCorrecta() == true) {
-				correcta = respuestas.get(i);
-			}
-		}
-		return correcta;
-	}
 	
 	@Override
 	public List<Ronda> listaMejorRondaJugador() {
@@ -87,6 +77,11 @@ public class RondaSeriviceImpl implements IRondaService {
 		return mejorRonda;
 	}
 	
+	@Override
+	public Ronda buscarRonda(Long id) {
+		return rondaDao.findById(id).orElse(null);
+	}
+	
 	//-------------------------------------------------------
 
 	@Override
@@ -96,6 +91,18 @@ public class RondaSeriviceImpl implements IRondaService {
 	
 	//-----------------------------------------------------
 
+
+	public Respuesta obtenerCorrecta(Ronda ronda) {
+		List<Respuesta> respuestas = ronda.getPregunta().getRespuestas();
+		Respuesta correcta = null;
+		for (int i = 0; i < respuestas.size(); i++) {
+			if (respuestas.get(i).getCorrecta() == true) {
+				correcta = respuestas.get(i);
+			}
+		}
+		return correcta;
+	}
+	
 	@Override
 	public void respuestaErronea(Ronda ronda) {
 		ronda.getJugador().setAcumulado(0);;
@@ -109,6 +116,8 @@ public class RondaSeriviceImpl implements IRondaService {
 		ronda.getJugador().setAcumulado(ronda.getJugador().getAcumulado() + ronda.getPremio().getDinero());
 		this.guardarRonda(ronda);	
 	}
+
+
 
 
 

@@ -31,7 +31,7 @@
 					<tbody>
 
 			        	<tr th:each="historial: ${datos}">
-							<td th:text="${historial.id}"></td>
+							<td th:text="${historial.jugador.id}"></td>
 							<td th:text="${historial.jugador.nombre}"></td>
 							<td th:text="${historial.estado}"></td>
 							<td th:text="${historial.premio.id}"></td>

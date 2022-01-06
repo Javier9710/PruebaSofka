@@ -20,16 +20,19 @@ public interface IRondaService {
 	public Ronda setearRonda(Jugador jugador, List<Pregunta> pregunta, Premio premio);
 
 	public Ronda guardarRonda(Ronda ronda);
-	
-	public Respuesta obtenerCorrecta(Ronda ronda);
-	
+
 	public List<Ronda> listaMejorRondaJugador();
+	
+	public Ronda buscarRonda(Long id);
 	
 	//--------------------------------------------------
 	
 	public Premio buscarPremioNievel(Long id);
 
 	//----------------------------------------------------
+	
+	
+	public Respuesta obtenerCorrecta(Ronda ronda);
 	
     public void respuestaErronea(Ronda ronda);
     
