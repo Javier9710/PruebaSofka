@@ -3,7 +3,8 @@
 
 <head th:replace="layout/layout :: head"></head>
 <body>
-	
+	<div th:if="${success != null}" class="alert alert-success"
+			th:text="${success}"></div>
 	<div class="container py-4">
 		<div class="card bg-light">
 			<div class="card-header">

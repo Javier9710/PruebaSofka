@@ -82,6 +82,7 @@ public class JuegoController {
 			if(nivel!=5) {
 			nivel++;
 			flash.addAttribute("jugador", ronda.getJugador());
+			flash.addFlashAttribute("success", "Su respuesta fue Correcta");
 			return "redirect:/juego/crearRonda";
 			}else {
 				flash.addFlashAttribute("success", "Feliciades, Acabas de ganar el juego");
@@ -91,7 +92,7 @@ public class JuegoController {
 		}else {
 			rondaService.respuestaErronea(ronda);
 			nivel=1L;
-			flash.addFlashAttribute("error", "Perdiste el juego");
+			flash.addFlashAttribute("error", "No has acertado la respuesta");
 			return "redirect:/juego/iniciar";
 		}
 		

@@ -32,7 +32,6 @@ public class Jugador {
 	private double acumulado;
 	
 	@OneToMany(mappedBy = "jugador")
-	@JsonManagedReference
 	@ToString.Exclude
 	private List<Ronda> rondas;
 

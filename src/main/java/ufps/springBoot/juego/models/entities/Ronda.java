@@ -33,7 +33,6 @@ public class Ronda {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_jugador")
-	@JsonBackReference
 	private Jugador jugador;
 	
 	@ManyToOne

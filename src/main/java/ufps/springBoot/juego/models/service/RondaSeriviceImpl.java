@@ -99,13 +99,13 @@ public class RondaSeriviceImpl implements IRondaService {
 	@Override
 	public void respuestaErronea(Ronda ronda) {
 		ronda.getJugador().setAcumulado(0);;
-		ronda.setEstado("Erronea");
+		ronda.setEstado("PERDEDOR");
 		this.guardarRonda(ronda);
 	}
 
 	@Override
 	public void respuestaCorrecta(Ronda ronda) {
-		ronda.setEstado("Correcta");
+		ronda.setEstado("GANADOR");
 		ronda.getJugador().setAcumulado(ronda.getJugador().getAcumulado() + ronda.getPremio().getDinero());
 		this.guardarRonda(ronda);	
 	}
