@@ -14,12 +14,16 @@ public interface IRondaService {
 	
 	public Jugador buscarJugadorNombre(String nombre);
 	
+	public List<Jugador> listaJugadores();
+	
 	//---------------------------------------------------
 	public Ronda setearRonda(Jugador jugador, List<Pregunta> pregunta, Premio premio);
 
 	public Ronda guardarRonda(Ronda ronda);
 	
 	public Respuesta obtenerCorrecta(Ronda ronda);
+	
+	public List<Ronda> listaMejorRondaJugador();
 	
 	//--------------------------------------------------
 	

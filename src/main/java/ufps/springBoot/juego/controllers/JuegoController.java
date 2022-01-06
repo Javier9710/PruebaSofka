@@ -49,10 +49,8 @@ public class JuegoController {
 		flash.addFlashAttribute("warning", "No existen las cantidad minima de preguntas para iniciar");
 		return "redirect:/juego/iniciar";
 	}
-	
-		
-		Jugador jugador1 = rondaService.buscarJugadorNombre(jugador.getNombre());
-		if(jugador1==null) {
+		Jugador jugadorAux = rondaService.buscarJugadorNombre(jugador.getNombre());
+		if(jugadorAux==null) {
 		rondaService.guardarJugador(jugador);
 		flash.addAttribute("jugador", jugador);
 		return "redirect:/juego/crearRonda";

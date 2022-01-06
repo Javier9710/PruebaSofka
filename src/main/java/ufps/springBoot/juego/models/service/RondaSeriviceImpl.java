@@ -1,5 +1,6 @@
 package ufps.springBoot.juego.models.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class RondaSeriviceImpl implements IRondaService {
 	
 	@Autowired
 	private IPremioDao premioDao;
+	
+	
 
 	@Override
 	public Jugador guardarJugador(Jugador jugador) {
@@ -37,6 +40,12 @@ public class RondaSeriviceImpl implements IRondaService {
 	public Jugador buscarJugadorNombre(String nombre) {
 		return jugadorDao.findByNombre(nombre);
 	}
+	
+	@Override
+	public List<Jugador> listaJugadores() {
+		return jugadorDao.findAll();
+	}
+
 	
 	// --------------------------------------------------------
 
@@ -67,6 +76,17 @@ public class RondaSeriviceImpl implements IRondaService {
 		return correcta;
 	}
 	
+	@Override
+	public List<Ronda> listaMejorRondaJugador() {
+		List<Jugador> jugadores = this.listaJugadores();
+		List<Ronda> mejorRonda = new ArrayList<>();
+		for (int i = 0; i < jugadores.size(); i++) {
+			mejorRonda.add(jugadores.get(i).getRondas().get(jugadores.get(i).getRondas().size()-1));
+			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx: " + mejorRonda.get(i).getJugador().getAcumulado());
+		}
+		return mejorRonda;
+	}
+	
 	//-------------------------------------------------------
 
 	@Override
@@ -89,6 +109,7 @@ public class RondaSeriviceImpl implements IRondaService {
 		ronda.getJugador().setAcumulado(ronda.getJugador().getAcumulado() + ronda.getPremio().getDinero());
 		this.guardarRonda(ronda);	
 	}
+
 
 
 

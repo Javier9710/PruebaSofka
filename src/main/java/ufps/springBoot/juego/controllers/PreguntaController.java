@@ -39,43 +39,12 @@ public class PreguntaController {
     public String guardarPregunta(Pregunta pregunta, @RequestParam(name = "respuestasForm[]") String[] respuestasForm, 
     		@RequestParam(name = "check") int check, RedirectAttributes flash){
         	preguntaService.guardar(pregunta);
+        	preguntaService.setearPregunta(pregunta, check, respuestasForm);
 
-        for (int i = 0; i < respuestasForm.length; i++) {
-            Respuesta respuestaNew = new Respuesta();
-            respuestaNew.setRespuesta(respuestasForm[i]);
-            respuestaNew.setCorrecta(false);
-            respuestaNew.setPregunta(pregunta);
-            if (i==check) {
-				respuestaNew.setCorrecta(true);
-			}
-            preguntaService.guardarRespuesta(respuestaNew);
-        }
-        
        flash.addFlashAttribute("success", "Pregunta registrada con exito");
 
         return "redirect:form";
     }
 
-    /*
-    @GetMapping("/{id}")
-    public ResponseEntity<Pregunta> obtenerPregunta(@PathVariable (name = "id", required = true) Long id){
-        System.out.println("pruebaaaa-----" + id);
-        Pregunta preguntaDB = preguntaService.getPregunta(id);
-        System.out.println("pruebaaaa-----" + preguntaDB.getDescripcion());
-        if (preguntaDB == null){
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(preguntaDB);
-
-    }
-
-
-    @GetMapping
-    public ResponseEntity<List<Pregunta>> listarTodos(){
-        List<Pregunta> preguntas = preguntaService.listaPreguntas();
-
-        return ResponseEntity.ok(preguntas);
-    }*/
 
 }

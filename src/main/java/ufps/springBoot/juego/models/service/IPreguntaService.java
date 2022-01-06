@@ -18,6 +18,9 @@ public interface IPreguntaService {
     
     public boolean validaCantidadPreguntas();
     
+    
+    public Pregunta setearPregunta(Pregunta pregunta, int check, String[] respuestas);
+    
    
     //----------------------------------------------
 

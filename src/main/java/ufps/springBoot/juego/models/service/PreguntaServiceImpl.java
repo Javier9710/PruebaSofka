@@ -49,15 +49,10 @@ public class PreguntaServiceImpl implements IPreguntaService{
 	
 	@Override
 	public boolean validaCantidadPreguntas() {
-		int cont1=0;
-		int cont2=0;
-		int cont3=0;
-		int cont4=0;
-		int cont5=0;
+		int cont1=0, cont2=0, cont3=0, cont4=0, cont5=0;
 		List<Pregunta> preguntas = this.listaPreguntas();
 		if(preguntas.size()<10) {
 			return false;
-			
 		}else {
 			for (int i = 0; i < preguntas.size(); i++) {
 				if(preguntas.get(i).getCategoria().getId()==1) {
@@ -97,6 +92,21 @@ public class PreguntaServiceImpl implements IPreguntaService{
 	@Override
 	public Respuesta guardarRespuesta(Respuesta respuesta) {
 		return respuestaDao.save(respuesta);
+	}
+
+	@Override
+	public Pregunta setearPregunta(Pregunta pregunta, int check, String[] respuestas) {
+		for (int i = 0; i < respuestas.length; i++) {
+            Respuesta respuestaNew = new Respuesta();
+            respuestaNew.setRespuesta(respuestas[i]);
+            respuestaNew.setCorrecta(false);
+            respuestaNew.setPregunta(pregunta);
+            if (i==check) {
+				respuestaNew.setCorrecta(true);
+			}
+            this.guardarRespuesta(respuestaNew);
+        }
+		return null;
 	}
 
 
