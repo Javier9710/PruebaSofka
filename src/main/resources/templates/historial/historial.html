@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thylemeaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${'HISTORIAL DE JUEGO'}"></div>
+			<div class="card-body">
+					
+					<h4>TABLA DE RESULTADOS</h4>
+					
+				<table
+					class="table table-bordered table-striped my-4">
+					<thead class="thead-dark">
+						<tr>
+							<th>ID</th>
+							<th>NOMBRE JUGADOR</th>
+							<th>ESTADO</th>
+							<th>RONDA ALCANZADA</th>
+							<th>PUNTAJE OBTENIDO</th>
+							<th>FECHA</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+
+			        	<tr th:each="historial: ${datos}">
+							<td th:text="${historial.id}"></td>
+							<td th:text="${historial.jugador.nombre}"></td>
+							<td th:text="${historial.estado}"></td>
+							<td th:text="${historial.premio.id}"></td>
+							<td th:text="${historial.jugador.acumulado}"></td>
+							<td th:text="${historial.fecha}"></td>
+							
+						</tr> 
+
+					</tbody>
+
+
+
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>
