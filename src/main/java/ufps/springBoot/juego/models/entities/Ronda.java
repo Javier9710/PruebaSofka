@@ -36,6 +36,6 @@ public class Ronda {
 	
 	private String estado;
 	
-	private int nivel;
+
 
 }

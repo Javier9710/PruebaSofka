@@ -19,6 +19,10 @@ public class Jugador {
 	@Column(name = "id_jugador")
 	private Long id;
 	
+	//@Column(unique = true)
 	private String nombre;
+	
+	
+	private double acumulado;
 
 }

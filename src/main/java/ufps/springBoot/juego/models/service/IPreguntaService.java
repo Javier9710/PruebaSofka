@@ -1,6 +1,5 @@
 package ufps.springBoot.juego.models.service;
 
-import org.springframework.stereotype.Service;
 import ufps.springBoot.juego.models.entities.Categoria;
 import ufps.springBoot.juego.models.entities.Pregunta;
 import ufps.springBoot.juego.models.entities.Respuesta;

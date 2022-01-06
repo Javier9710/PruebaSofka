@@ -64,10 +64,10 @@ INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (34
 INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (35,'365 Dias', 9, 0);
 INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (36,'365 Dias y 12 Horas', 9, 0);
 
-INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (33,'Maldivas', 10, 0);
-INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (34,'San Marino', 10, 0);
-INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (35,'Monaco', 10, 0);
-INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (36,'Vaticano', 10, 1);
+INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (37,'Maldivas', 10, 0);
+INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (38,'San Marino', 10, 0);
+INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (39,'Monaco', 10, 0);
+INSERT INTO respuestas (id_respuesta,respuesta,id_pregunta, correcta) VALUES (40,'Vaticano', 10, 1);
 
 
 //premios

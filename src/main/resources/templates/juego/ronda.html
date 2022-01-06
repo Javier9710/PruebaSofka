@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
- <head th:replace="layout/layout :: head"></head>
+<head th:replace="layout/layout :: head"></head>
 <body>
-	 <header th:replace="layout/layout :: header"></header>
+	<header th:replace="layout/layout :: header"></header>
 	<div class="container py-4">
 		<div class="card bg-light">
 			<div class="card-header">
-			<h3>PREGUNTA</h3>
+				<div class="row">
+					<div class="col-sm-6">
+						<h3 th:text="'Pregunta de la ronda - '+${ronda.premio.id}"></h3>
+						<div class="col-sm-0">Premio de Ronda:</div>
+							<div class="col-sm-0"
+								th:text="${ronda.premio.dinero}"></div>
+					</div>
+
+					<div class="col-sm-6">
+
+
+						<div class="row">
+
+							<div class="col-sm-10 text-right">
+								<div class="image">
+									<img width="50" height="50" src="/img/perfil1.png"
+										class="img-circle elevation-2" alt="User Image">
+								</div>
+							</div>
+
+							<div class="col-sm-10 text-right">Jugador:</div>
+							<div class="col-sm-0 text-right"
+								th:text="${ronda.jugador.nombre}"></div>
+						</div>
+						<div class="row">
+							<div class="col-sm-10 text-right">Acumulado:</div>
+							<div class="col-sm-0 text-right"
+								th:text="${ronda.jugador.acumulado}"></div>
+						</div>
+					</div>
+				</div>
+
+
+
 			</div>
 			<div class="card-body">
 
@@ -17,41 +50,45 @@
 					method="get">
 					<div class="form-group row">
 
-						<label class="col-sm-2 col-form-label">PREGUNTA</label>
+						<label class="col-sm-2 col-form-label">PREGUNTA:</label>
+
 						<div class="col-sm-6">
 							<textarea class="form-control" type="text" disabled="disabled"
-								th:field="*{pregunta.descripcion}"></textarea> <small class="form-text text-danger"></small>
+								th:field="*{pregunta.descripcion}"></textarea>
+							<small class="form-text text-danger"></small>
+						</div>
+							</div>				
+
+					<hr class="border border-primary">
+
+					<h2>Marque la Respuesta Correcta</h2>
+
+
+					<div class="form-group" id="product1">
+						<div class="form-group row">
+							<div th:each="respuestas : ${ronda.pregunta.respuestas}"
+								class="col-sm-6">
+								<input id="product-1-1" name="check" type="radio"
+									th:value="${respuestas.id}" /> Respuesta Correcta <input
+									th:value="${respuestas.respuesta}" class="form-control"
+									name="respuestasForm[]" type="text" disabled="disabled" />
+								<small class="form-text text-danger"></small>
+							</div>
+
 						</div>
 					</div>
-					
-				<hr class="border border-primary">
+					<input type="hidden" th:value="${ronda.pregunta.id}"
+						name="pregunta"> <input type="hidden"
+						th:value="${ronda.premio.id}" name="premio"> <input
+						type="hidden" th:value="${ronda.jugador.id}" name="jugador">
+					<input type="hidden" th:value="${ronda.id}" name="ronda">
 
-				<h2>Marque la Respuesta Correcta</h2>
-				
-				
-				<div class="form-group" id="product1">
-					<div class="form-group row">
-						<div th:each="respuestas : ${ronda.pregunta.respuestas}" class="col-sm-6">
-						<input id="product-1-1" name="check"  type="radio" th:value="${respuestas.id}"/> Respuesta Correcta
-							<input th:value="${respuestas.respuesta}" class="form-control" name="respuestasForm[]"
-								 type="text" disabled="disabled"
-								   /> <small class="form-text text-danger"></small>
-			           </div>
-					
-				 </div>
-               </div>
-               <input type="hidden" th:value="${ronda.pregunta.id}" name="pregunta">
-               <input type="hidden" th:value="${ronda.premio.id}" name="premio">
-               <input type="hidden" th:value="${ronda.jugador.id}" name="jugador">
-           	  <input type="hidden" th:value="${ronda.id}" name="ronda">
-               
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<input class="btn btn-primary" type="submit"
-								value="VERIFICAR" />
+							<input class="btn btn-primary" type="submit" value="VERIFICAR" />
 						</div>
-						
-						
+
+
 					</div>
 
 
@@ -62,10 +99,10 @@
 
 	</div>
 
-	 <footer th:replace="layout/layout :: footer"></footer>
-	 
+	<footer th:replace="layout/layout :: footer"></footer>
 
-	 
+
+
 </body>
 
 </html>
